@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>Astro Vishakha</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .navbar {
+            background-color: #6e0000;
+        }
+        .navbar-brand{
+            padding-left: 30px;
+        }
+        .navbar h2 {
+            color: #fff;
+        }
+        h4 {
+            text-align: center;
+            padding: 1%;
+            
+        }
+        .content {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px;
+           
+        }
+        .left-section {
+            width: 30%;
+            background-color: #e9ecef;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .left-section a {
+            display: block;
+            margin: 10px 0;
+            color: #007bff;
+            text-decoration: none;
+        }
+        .left-section a:hover {
+            text-decoration: underline;
+        }
+        .right-section {
+            width: 65%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            flex-direction: column;
+        }
+        .iframe-container {
+            display: none;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .iframe-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            border-radius: 8px;
+        }
+        .pdf-container {
+            display: none;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            position: relative;
+        }
+        .pdf-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a class="navbar-brand" href="index.html"><h2>Astro Vishakha</h2></a>  
+    </nav>
+    <h4>Course June Batch "Basics of Astrology"</h4>
+    <div class="content">
+        <div class="left-section">
+            <a href="#" class="video-link" data-video-id="wzlQZSaa3mY"><h5>Video 1: Basics</h5></a>
+            <a href="#" class="pdf-link" data-pdf-url="class1.pdf"><h5>Course materials</h5></a>
+            <a href="#" class="video-link" data-video-id="txivbhVYJZI"><h5>Video 2: Mars and Aries</h5></a>
+            <a href="#" class="pdf-link" data-pdf-url="class2.pdf"><h5>Course materials</h5></a>
+        </div>
+        <div class="right-section">
+            <div class="iframe-container">
+                <iframe src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="pdf-container">
+                <iframe src="" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.video-link').forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                var videoId = this.getAttribute('data-video-id');
+                var iframeContainer = document.querySelector('.iframe-container');
+                var pdfContainer = document.querySelector('.pdf-container');
+                var iframe = iframeContainer.querySelector('iframe');
+                iframe.src = 'https://www.youtube.com/embed/' + videoId;
+                iframeContainer.style.display = 'block';
+                pdfContainer.style.display = 'none';
+            });
+        });
+
+        document.querySelectorAll('.pdf-link').forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                var pdfUrl = this.getAttribute('data-pdf-url');
+                var iframeContainer = document.querySelector('.iframe-container');
+                var pdfContainer = document.querySelector('.pdf-container');
+                var iframe = pdfContainer.querySelector('iframe');
+                iframe.src = pdfUrl;
+                iframeContainer.style.display = 'none';
+                pdfContainer.style.display = 'block';
+            });
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
