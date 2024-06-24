@@ -15,8 +15,8 @@
         .navbar {
             background-color: #6e0000;
         }
-        .navbar-brand{
-            padding-left: 30px;
+        .navbar-brand {
+            padding-left: 15px;
         }
         .navbar h2 {
             color: #fff;
@@ -24,20 +24,25 @@
         h4 {
             text-align: center;
             padding: 1%;
-            
+            margin: 0;
         }
         .content {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             margin: 20px;
-           
         }
-        .left-section {
-            width: 30%;
+        .left-section{
+            width: 100%;
+        }
+         .right-section {
+            width: 70%;
+        }
+        .left-section, .right-section {
             background-color: #e9ecef;
             padding: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
+            margin-bottom: 20px;
         }
         .left-section a {
             display: block;
@@ -49,21 +54,14 @@
             text-decoration: underline;
         }
         .right-section {
-            width: 65%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            flex-direction: column;
-        }
-        .iframe-container {
             display: none;
+        }
+        .iframe-container, .pdf-container {
             width: 100%;
             padding-top: 56.25%; /* 16:9 Aspect Ratio */
             position: relative;
-            margin-bottom: 20px;
         }
-        .iframe-container iframe {
+        .iframe-container iframe, .pdf-container iframe {
             position: absolute;
             top: 0;
             left: 0;
@@ -72,20 +70,32 @@
             border: 0;
             border-radius: 8px;
         }
-        .pdf-container {
-            display: none;
-            width: 100%;
-            padding-top: 56.25%; /* 16:9 Aspect Ratio */
-            position: relative;
+
+        @media only screen and (min-width: 768px) {
+            .content {
+                flex-direction: row;
+            }
+            .left-section{
+                width: 30%;
+                margin-bottom: 0;
+            }
+            .right-section {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
         }
-        .pdf-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
-            border-radius: 8px;
+
+        /* Add mobile-specific styles here */
+        @media only screen and (max-width: 767px) {
+            .right-section {
+                display: block;
+                width: 100%;
+            }
+
+            .iframe-container {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -96,10 +106,15 @@
     <h4>Course June Batch "Basics of Astrology"</h4>
     <div class="content">
         <div class="left-section">
-            <a href="#" class="video-link" data-video-id="wzlQZSaa3mY"><h5>Video 1: Basics</h5></a>
-            <a href="#" class="pdf-link" data-pdf-url="class1.pdf"><h5>Course materials</h5></a>
-            <a href="#" class="video-link" data-video-id="txivbhVYJZI"><h5>Video 2: Mars and Aries</h5></a>
-            <a href="#" class="pdf-link" data-pdf-url="class2.pdf"><h5>Course materials</h5></a>
+            <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#leftSectionCollapse" aria-expanded="false" aria-controls="leftSectionCollapse">
+                Classes
+            </button>
+            <div class="collapse" id="leftSectionCollapse">
+                <a href="#" class="video-link" data-video-id="wzlQZSaa3mY"><h5>Video 1: Basics</h5></a>
+                <a href="#" class="pdf-link" data-pdf-url="class1.pdf"><h5>Course materials</h5></a>
+                <a href="#" class="video-link" data-video-id="txivbhVYJZI"><h5>Video 2: Mars and Aries</h5></a>
+                <a href="#" class="pdf-link" data-pdf-url="class2.pdf"><h5>Course materials</h5></a>
+            </div>
         </div>
         <div class="right-section">
             <div class="iframe-container">
