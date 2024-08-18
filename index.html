@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,12 +52,17 @@
             text-decoration: underline;
         }
         .right-section {
-            display: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
         }
         .iframe-container, .pdf-container {
             width: 100%;
+            height: 0;
             padding-top: 56.25%; /* 16:9 Aspect Ratio */
             position: relative;
+            display: none; /* Hidden by default */
         }
         .iframe-container iframe, .pdf-container iframe {
             position: absolute;
@@ -77,28 +83,13 @@
                 margin-bottom: 0;
             }
             .right-section {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
                 width: 70%;
             }
             .dropdown-toggle {
                 display: none; /* Hide toggle button in desktop view */
             }
             #leftSectionCollapse {
-            display: block !important; /* Show content in desktop view */
-        }
-            
-        }
-
-        @media only screen and (max-width: 767px) {
-            .right-section {
-                display: block;
-                width: 100%;
-            }
-
-            .iframe-container {
-                display: none;
+                display: block !important; /* Show content in desktop view */
             }
         }
     </style>
@@ -131,29 +122,31 @@
     </div>
 
     <script>
-        document.querySelectorAll('.video-link').forEach(link => {
-            link.addEventListener('click', function(event) {
-                event.preventDefault();
-                var videoId = this.getAttribute('data-video-id');
-                var iframeContainer = document.querySelector('.iframe-container');
-                var pdfContainer = document.querySelector('.pdf-container');
-                var iframe = iframeContainer.querySelector('iframe');
-                iframe.src = 'https://www.youtube.com/embed/' + videoId;
-                iframeContainer.style.display = 'block';
-                pdfContainer.style.display = 'none';
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelectorAll('.video-link').forEach(link => {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    var videoId = this.getAttribute('data-video-id');
+                    var iframeContainer = document.querySelector('.iframe-container');
+                    var pdfContainer = document.querySelector('.pdf-container');
+                    var iframe = iframeContainer.querySelector('iframe');
+                    iframe.src = 'https://www.youtube.com/embed/' + videoId;
+                    iframeContainer.style.display = 'block';
+                    pdfContainer.style.display = 'none';
+                });
             });
-        });
 
-        document.querySelectorAll('.pdf-link').forEach(link => {
-            link.addEventListener('click', function(event) {
-                event.preventDefault();
-                var pdfUrl = this.getAttribute('data-pdf-url');
-                var iframeContainer = document.querySelector('.iframe-container');
-                var pdfContainer = document.querySelector('.pdf-container');
-                var iframe = pdfContainer.querySelector('iframe');
-                iframe.src = pdfUrl;
-                iframeContainer.style.display = 'none';
-                pdfContainer.style.display = 'block';
+            document.querySelectorAll('.pdf-link').forEach(link => {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    var pdfUrl = this.getAttribute('data-pdf-url');
+                    var iframeContainer = document.querySelector('.iframe-container');
+                    var pdfContainer = document.querySelector('.pdf-container');
+                    var iframe = pdfContainer.querySelector('iframe');
+                    iframe.src = pdfUrl;
+                    iframeContainer.style.display = 'none';
+                    pdfContainer.style.display = 'block';
+                });
             });
         });
     </script>
